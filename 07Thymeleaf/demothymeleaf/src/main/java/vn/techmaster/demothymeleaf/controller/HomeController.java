@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import vn.techmaster.demothymeleaf.model.Person;
+import vn.techmaster.demothymeleaf.model.TravelType;
 import vn.techmaster.demothymeleaf.repository.InMemoryRepository;
 
 @Controller
@@ -15,6 +16,20 @@ public class HomeController {
   @GetMapping("/")
   public String getHome() {
     return "index";
+  }
+
+  @GetMapping("/text")
+  public String demoText(Model model) {
+    Person tom = new Person("Tom", "USA", "1976-12-01", "male");
+    model.addAttribute("person", tom);
+    model.addAttribute("message", "<h2>Display <span style='color:red'>HTML</span> inside</h2>");
+    return "text";
+  }
+
+  @GetMapping("/link")
+  public String linkExpression(Model model) {
+    model.addAttribute("dynamiclink", "products");
+    return "link";
   }
 
   @GetMapping("/hello")
@@ -33,22 +48,9 @@ public class HomeController {
     return "products";
   }
 
-  @GetMapping("/listbox")
-  public String showListBox(Model model) {
-    model.addAttribute("countries", repo.getCountries());
-    return "listbox";
-  }
-
   @GetMapping("/services")
   public String getService() {
     return "services";
-  }
-
-  @GetMapping("/text")
-  public String demoText(Model model) {
-    Person tom = new Person("Tom", "USA", "1976-12-01", "male");
-    model.addAttribute("person", tom);
-    return "text";
   }
 
   @GetMapping("/condition")
@@ -62,6 +64,14 @@ public class HomeController {
     model.addAttribute("users", repo.getUsers());
     return "switch";
   }
+
+  @GetMapping("/thblock")
+  public String demoThBlock(Model model) {
+    model.addAttribute("travelTypes", TravelType.values());
+    return "thblock";
+  }
+
+
 
   
 }
