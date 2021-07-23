@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+      .img{
+        margin: initial;
+        position: absolute;
+        left: 236px;
+      }
+
+      .imgeven{
+        margin: initial;
+        position: absolute;
+        left: -110px;
+      }
+
+      .wr{
+        position: relative;
+      }
+      img {
+        margin-left: -20px;
+      }
+    </style>
+
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  </head>
+  <body style="position: relative;">
+    <header>
+      <a href="/">Trang chủ</a>
+    </header>
+
+    <div style="margin-left: 350px;">
+      <table class="table wr" th:each="person, index : ${persons}" th:if="${index.odd}">
+        <div class="img">
+            <img th:if="${person.gender == 'Male'}" src="https://64.media.tumblr.com/c869dda7b0d43c1600d5ba130ef2e04f/15bda826b481de6f-bb/s1280x1920/4a7c6dcdbaf91c5005f15ee256b0f432647138ef.jpg" alt="" width="100px" height="100px">
+
+            <img th:if="${person.gender == 'Female'}" src="https://pbs.twimg.com/media/Eo1pHn3U0AAAjmb?format=jpg&name=large" alt="" width="100px" height="100px">
+
+        </div>
+        <tbody>
+          <tr>
+            <th style="display: inherit" th:text="${person.name}"></th>
+            <th style="display: inherit" th:text="${person.nationality}"></th>
+            <th style="display: inherit" th:text="${person.birthdate}"></th>
+            <th style="display: inherit" th:text="${person.gender}"></th>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="position: absolute; left: 700px; top: 20px;">
+        <table class="table wr" th:each="person, index : ${persons}" th:if="${index.even}">
+        <div class="imgeven">
+          <img th:if="${person.gender == 'Male'}" src="https://64.media.tumblr.com/c869dda7b0d43c1600d5ba130ef2e04f/15bda826b481de6f-bb/s1280x1920/4a7c6dcdbaf91c5005f15ee256b0f432647138ef.jpg" alt="" width="100px" height="100px">
+
+          <img th:if="${person.gender == 'Female'}" src="https://pbs.twimg.com/media/Eo1pHn3U0AAAjmb?format=jpg&name=large" alt="" width="100px" height="100px">
+        </div>
+        <tbody>
+          <tr>
+            <th style="display: inherit" th:text="${person.name}"></th>
+            <th style="display: inherit" th:text="${person.nationality}"></th>
+            <th style="display: inherit" th:text="${person.birthdate}"></th>
+            <th style="display: inherit" th:text="${person.gender}"></th>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </body>
+</html>

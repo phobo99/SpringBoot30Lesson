@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:fragment="header">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+</head>
+<body>
+    <div class="lists" style="display: flex;flex-direction: column; width: 300px" th:fragment="topmenu">
+        <a role="button" class="btn btn-warning" href="/calculator">Cộng hai số</a><br>
+        <a role="button" class="btn btn-warning" href="/listperson">Hiển thị danh sách </a><br>
+        <a role="button" class="btn btn-warning" href="/listperson2">Hiển thị danh sách thành 2 cột</a>
+    </div>
+</body>
+</html>

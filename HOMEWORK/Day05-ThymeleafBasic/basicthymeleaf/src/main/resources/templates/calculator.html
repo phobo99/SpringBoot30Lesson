@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="index.html :: header">
+</head>
+<body>
+<a href="/">Trang chủ</a>
+<div>
+    <form th:action="@{/calculator}" th:object="${calculator}" method="post">
+        <p>First Number: <input type="text" placeholder="First Number" th:field="*{firstNumber}"></p>
+        <p>Second Number: <input type="text" placeholder="Second Number" th:field="*{secondNumber}"></p>
+        <p><input class="operator" type="hidden" placeholder="+, -, *, /" th:field="*{operator}"></p>
+        <input class="btn btn-primary" type="submit" value="+" onclick="dis('+')">
+        <input class="btn btn-danger" type="submit" value="-" onclick="dis('-')">
+        <input class="btn btn-warning" type="submit" value="*" onclick="dis('*')">
+        <input class="btn btn-info" type="submit" value="/" onclick="dis('/')">
+    </form>
+    <b>Kết quả: </b><strong th:text="${result}"></strong>
+</div>
+
+<script>
+    function dis(val) {
+        document.getElementById("operator").value = val
+    }
+</script>
+</body>
+</html>
