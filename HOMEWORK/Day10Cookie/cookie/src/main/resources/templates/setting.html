@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="template :: header"></div>
+    <style th:replace="template :: style"></style>
+</head>
+
+<body>
+    <div th:replace="template :: menu"></div>
+    <form class="container" th:action="@{/setting}" method="post" th:object="${color}">
+        <div class="row mt-3">
+            <div class=" col-5 md-3 mr-3 ">
+                <label>Background Color</label><br />
+                <select class="custom-select"  th:field="*{backgroundColor}" >
+                    <option selected value="0">Open this select menu</option>
+                    <option value="white">White</option>
+                    <option value="gray">Gray</option>
+                    <option value="orange">Orange</option>
+                    <option value="maroon">Maroon</option>
+                    <option value="black">Black</option>
+                </select>
+            </div>
+
+            <div class=" col-5 md-3 mr-3 ">
+                <label>Font Color</label><br />
+                <select class="custom-select"  th:field="*{fontColor}">
+                    <option value="0" selected>Open this select menu</option>
+                    <option value="white">White</option>
+                    <option value="gray">Gray</option>
+                    <option value="orange">Orange</option>
+                    <option value="marron">Marron</option>
+                    <option value="black">Black</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-7">
+                <label for="customRange3" class="form-label">Example range</label>
+                <div class="range">
+                    <span>0.5em</span><input type="range" class="form-range" min="0.5" max="3" step="0.1" id="customRange3" th:field="*{fontSize}"/><span>3.0em</span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save/Change Setting</button>
+    </form>
+    <div th:replace="template :: footer"></div>
+</body>
+<script th:replace="template :: script">
+</script>
+
+</html>
