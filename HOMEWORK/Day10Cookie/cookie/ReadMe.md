@@ -27,6 +27,9 @@
 ### Cấu trúc thư mục 
 ![](./screenshot/local.jpg)
 
+### Cookie
+![](./screenshot/cookies.jpg)
+
 1. Trang setting
 ![](./screenshot/success1.jpg)
 
