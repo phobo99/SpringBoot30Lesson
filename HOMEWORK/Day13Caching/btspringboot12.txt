@@ -1,0 +1,96 @@
+1. Ứng dụng web lúc lập trình chạy tốt, khi triển khai ở môi trường thật (production) có những yếu tố nào khiến nó chạy không đúng theo yêu cầu?
+
+	* Trả lời : Có nhiều yếu tố dẫn tới chương trình chạy không đúng như
+			- Sự cố DNS và kết nối mạng phía user gây nên các lỗi, DNS bị lỗi có thể ngăn không cho khách truy cập vào trang web, lỗi 404 và đường dẫn không chính xác ...
+			-  Máy chủ chậm và thời gian tải
+			-  Mã viết kém, chưa tối ưu việc request nhiều gửi tới cùng lúc
+			-  Lượng truy cập tăng đột biến đặc biệt là trong thời gian quảng cáo tiếp thị và một công ty có thể không chuẩn bị cho lưu lượng truy cập bổ sung khiến chạy không đúng yêu cầu do đôi khi trả về không đủ thông tin
+			-  Bảo mật chưa tốt dẫn tới hacker thay đổi thông tin mã khiến chương trình chạy sai
+			
+
+-----
+
+
+2. Lập trình viên cần kiểm thử tốc độ (load test) vào giai đoạn nào của dự án?
+	* Trả lời: Lập trình viên cần kiểm thử tốc độ (load test) vào giai đoạn Phát triển (Development) và cả giai đoạn Alpha test và Beta test vì chúng ta cần môi trường thật người dùng thật trải nghiệm app đã vận hành đúng ý hay chưa đã tốt chưa.
+	
+
+-----
+
+
+3. Thời gian phản hồi của trang ảnh hưởng thế nào đến trải nghiệm sử dụng của người dùng?
+	* Trả lời: Thời gian phản hồi của trang ảnh hưởng trực tiếơ tới trải nghiệm người dùng có tốt hay không, một ứng dụng có thời gian phải hồi nhanh luôn mang lại trải nghiệm tốt cho web/app mà người dùng đó đang sử dụng, khiến người dùng có thiện cảm tốt và happy với web/app đang sử dụng
+	
+
+-----
+
+4. Giải thích các tham số trong lệnh kiểm thử sau đây
+
+```
+hey -n 4000 -c 100 http://localhost:8080
+```
+
+.
+	* Trả lời:
+			- -n 4000 là total request: tổng khối lượng request
+			- -c 100 :là concurent request: tại 1 thời điểm gửi ra số request là 100, cho đến khi 1 request trả về thành công thì bổ xung thêm 1 request vào để đảm bảo gửi 100request từ client lên server
+			- http://localhost:8080 : lắng nghe ở cổng này
+
+
+-----
+5. Những yếu tố nào khiến web site chậm?:
+	* Khách quan:
+		- Mạng kém
+		- Băng thông khách hàng tới server chậm
+	* Chủ quan:
+		- Code thiếu tối ưu: Code thừa, Liên tục đọc ổ cứng, Code dài dòng, Câu lệnh SQL không tối ưu, không đánh chỉ mục cột để tìm kiếm cho nhanh
+		- Việc chọn framework và ngôn ngữ lập trình: Nhanh (Golang, Java Vertex, RUST)Vừa (Node.js,ASP.NET), Chậm(PHP,Python,Rails)
+		- Kiến trúc phân tán microservice không hợp lý gây chậm
+
+
+-----
+6. Làm sao để tăng tốc một Spring Boot web site?
+	* Trả lời: Tối ưu code và thuật toán, loại bỏ code thừa, loại trừ các cấu hình tự động không cần thiết, việc nâng version cải thiện đôi chút, thiết kế CSDL hợp lý đánh chỉ mục index hợp lý.
+		- Tối ưu trải nghiệm người dùng về độ trễ.
+		
+
+-----
+7. Phần khó nhất của caching là phần nào?
+	* Trả lời: Hiện tại em chưa nắm rõ lắm nên chưa thể biết được phần nào là khó nhất, cần thời gian để tìm hiểu thêm về cái này thêm
+
+
+
+-----
+8. Giải thích annotation sau đây:
+
+@EnableCaching
+@Cacheable
+@CachePut
+@CacheEvict
+
+?
+	* Trả lời: 
+		@EnableCahing: Để kích hoạt bộ nhớ đệm, annotation này là bắt buộc, nó sử dụng để spring context có thể tìm được các annotation @Cacheable, @CacheEvict, @CachePut
+		@Cacheable: lưu vào bộ nhớ đệm cho một phương thức và tham số là nơi kết quả sẽ được lưu trữ. 
+			- VD: hàm findUserById mình sử dụng annotation @Cacheable("user") tức là kết quả của hàm này sẽ được lưu vào bộ nhớ cache với tên là user (cái tên này các bạn thích đặt là gì cũng được). Tức là mỗi lần gọi hàm này nó sẽ kiểm tra với id truyền vào đã có dữ liệu trong cache chưa, nếu có rồi thì nó lấy từ trong cache. Nếu chưa có thì nó mới thực sự chạy vào code bên trong hàm và kết quả trả về sẽ được lưu vào cache với id và đối tượng User tương ứng.
+		@CachePut: chúng ta có thể cập nhật nội dung của bộ đệm mà không can thiệp vào việc thực thi phương thức. Nghĩa là, phương thức sẽ luôn được thực thi và kết quả được lưu vào bộ nhớ cache. 
+			- VD: hàm reloadAndFindUserById được đánh dấu là @CachePut(value = "user")tức là dữ liệu trả về sẽ được ghi đè vào cache. Với các method được đánh dấu là @CachePut thì sẽ luôn được thực thi kể cả đã có dữ liệu trong cache hay chưa.
+		@CacheEvict: loại bỏ bộ nhớ cache, giảm chi phí tìm kiếm các mục nhập trong bộ nhớ cache lớn bằng cách xóa các mục nhập cũ và không sử dụng. 
+			- VD: hàm clearCacheById được đánh dấu annotation @CacheEvict("user") tức là mỗi lần bạn gọi hàm này nó sẽ xóa dữ liệu với id tương ứng ở trong cache user
+
+
+
+-----
+9. Hãy copy đoạn lệnh giả lập trễ trong ví dụ mẫu vào đây?
+	* Trả lời:
+	```
+private void simulateSlowService() {
+    try {
+      long time = 3000L;
+      Thread.sleep(time);
+    } catch (InterruptedException e) {
+      throw new IllegalStateException(e);
+    }
+  }
+```
+
