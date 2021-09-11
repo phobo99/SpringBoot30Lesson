@@ -11,7 +11,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
@@ -23,19 +23,19 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product getProduct(Long id) {
         return productRepository.getAll().stream()
-                .filter(product -> product.getId()==id).findAny().orElse(null);
+                .filter(product -> product.getId() == id).findAny().orElse(null);
     }
 
     @Override
     public List<Product> searchProduct(String context) {
         return productRepository.getAll().stream()
-                .filter(product->product.getName().toLowerCase().contains(context.toLowerCase()))
+                .filter(product -> product.getName().toLowerCase().contains(context.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Product> sortProduct(String type) {
-        switch(type){
+        switch (type) {
             case "price":
                 return productRepository.getAll().stream()
                         .sorted(Comparator.comparingDouble(Product::getPrice))

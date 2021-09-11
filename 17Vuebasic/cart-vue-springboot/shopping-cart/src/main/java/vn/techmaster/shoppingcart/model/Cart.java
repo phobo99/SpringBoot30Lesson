@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Data
 
 public class Cart {
@@ -21,7 +22,7 @@ public class Cart {
         total = 0;
     }
 
-    public void setCart(List<Order> orderList, double discountPercentage, boolean isVATIncluded){
+    public void setCart(List<Order> orderList, double discountPercentage, boolean isVATIncluded) {
         this.orderList = orderList;
         rawTotal = 0;
 

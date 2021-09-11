@@ -1,5 +1,5 @@
 <template>
-  <div class="container outer" >
+  <div class="container outer">
     <h3 class="text-center mt-3">Your shopping cart</h3>
     <table class="table table-borderless mt-5">
       <thead class="text-center">
@@ -17,7 +17,7 @@
             <img
               :src="require(`../assets/watch${product.id}.jpg`)"
               class="img"
-              
+              alt=""
             />
           </td>
           <td class="col-2 align-middle">{{ product.name }}</td>
@@ -112,12 +112,12 @@ export default {
       });
       return total;
     },
-    total(){
-        let discount = this.subTotal*this.discount
-        let net = this.subTotal - discount;
-        let tax = net *0.1
-        return Math.round((net+tax+Number.EPSILON)*100)/100
-    }
+    total() {
+      let discount = this.subTotal * this.discount;
+      let net = this.subTotal - discount;
+      let tax = net * 0.1;
+      return Math.round((net + tax + Number.EPSILON) * 100) / 100;
+    },
   },
   async created() {
     let items = [];
@@ -136,23 +136,22 @@ export default {
 </script>
 
 <style scoped>
-.outer{
-    font-size:20px;
-    background:#343a40;
-    color:aliceblue;
+.outer {
+  font-size: 20px;
+  background: #343a40;
+  color: aliceblue;
 }
 .table-borderless td,
 .table-borderless th {
-    border: 0;
+  border: 0;
 }
-.img{
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    transition: ease-in-out;
+.img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transition: ease-in-out;
 }
-.img:hover{
-    transform: scale(1.2);
+.img:hover {
+  transform: scale(1.2);
 }
-
 </style>

@@ -8,11 +8,13 @@ import lombok.Data;
 public class Order {
     private Product product;
     private int count;
+
     public void increaseByOne() {
         count += 1;
     }
+
     public void decreaseByOne() {
-        if(count>0)
-            count -=1;
+        if (count > 0)
+            count -= 1;
     }
 }
